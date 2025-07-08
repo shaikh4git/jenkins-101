@@ -25,7 +25,10 @@ pipeline {
             steps {
                 echo "Testing.. This is the second stage of the pipeline."
                 sh '''
-                echo "doing test stuff on Docker agent.."
+                cd myapp
+                python3 hello.py
+                python3 hello.py --name=Shaikh
+                echo "Tests completed successfully."
                 '''
             }
         }
