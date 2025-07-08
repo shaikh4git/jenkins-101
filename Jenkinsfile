@@ -10,7 +10,7 @@ pipeline {
     stages {
         stage('Build') {
             steps {
-                echo "Building.."
+                echo "Building.. This is the first stage of the pipeline."
                 sh '''
                 echo "doing build stuff on Docker agent.."
                 '''
