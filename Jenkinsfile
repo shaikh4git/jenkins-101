@@ -26,6 +26,7 @@ pipeline {
                 echo "Testing.. This is the second stage of the pipeline."
                 sh '''
                 cd myapp
+                . venv/bin/activate
                 python3 hello.py
                 python3 hello.py --name=Shaikh
                 echo "Tests completed successfully."
