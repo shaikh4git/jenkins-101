@@ -18,9 +18,9 @@ pipeline {
         }
         stage('Test') {
             steps {
-                echo "Testing.."
+                echo "Testing.. This is the second stage of the pipeline."
                 sh '''
-                echo "doing test stuff.."
+                echo "doing test stuff on Docker agent.."
                 '''
             }
         }
