@@ -33,11 +33,14 @@ pipeline {
                 '''
             }
         }
-        stage('Deliver') {
+             stage('Docker Build and Run') {
             steps {
-                echo 'Deliver....'
+                echo 'Building Docker image and running container...'
                 sh '''
-                echo "doing delivery stuff.. This is gonna be the 4th build."
+                cd myapp
+                docker build -t myapp-image .
+                docker rm -f myapp-container || true
+                docker run -d --name myapp-container myapp-image
                 '''
             }
         }
