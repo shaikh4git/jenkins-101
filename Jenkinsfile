@@ -12,6 +12,9 @@ pipeline {
             steps {
                 echo "Building.. This is the first stage of the pipeline."
                 sh '''
+                cd myapp
+                pip install -r requirements.txt
+                echo "Installed all the requirements for the Python app."
                 echo "doing build stuff on Docker agent.."
                 '''
             }
