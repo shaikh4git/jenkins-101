@@ -35,7 +35,7 @@ pipeline {
         }
              stage('Docker Build and Run') {
             steps {
-                echo 'Building Docker image and running container...'
+                echo 'Building Docker image and running container...To test now'
                 sh '''
                 cd myapp
                 docker build -t myapp-image .
