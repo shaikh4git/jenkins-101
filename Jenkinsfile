@@ -1,7 +1,7 @@
 pipeline {
     agent { 
         node {
-            label 'docker-agent-python'
+            label 'docker-agent-python_dockercli'
             }
       }
     triggers {
@@ -33,7 +33,7 @@ pipeline {
                 '''
             }
         }
-             stage('Docker Build and Run') {
+        stage('Docker Build and Run') {
             steps {
                 echo 'Building Docker image and running container...'
                 sh '''
