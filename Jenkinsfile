@@ -1,10 +1,9 @@
 pipeline {
-    agent {
-      docker { 
-          image 'docker:latest'
-          args '-v /var/run/docker.sock:/var/run/docker.sock'
-          }
-        }
+    agent { 
+        node {
+            label 'docker-agent-python'
+            }
+      }
     triggers {
         pollSCM '* * * * *'
     }
@@ -34,9 +33,9 @@ pipeline {
                 '''
             }
         }
-        stage('Docker Build and Run') {
+             stage('Docker Build and Run') {
             steps {
-                echo 'Building Docker image and running container...To test now'
+                echo 'Building Docker image and running container...'
                 sh '''
                 cd myapp
                 docker build -t myapp-image .
