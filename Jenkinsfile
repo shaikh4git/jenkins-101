@@ -1,9 +1,8 @@
 pipeline {
     agent { 
-        docker {
-            image 'shaikhdocker/jenkinsagent_docker:latest'
-            args '-v /var/run/docker.sock:/var/run/docker.sock'
-            }
+        node {
+            label  'docker-agent-python_dockercli' 
+        }
       }
     triggers {
         pollSCM '* * * * *'
