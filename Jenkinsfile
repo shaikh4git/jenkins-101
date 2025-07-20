@@ -44,11 +44,12 @@ pipeline {
                 '''
             }
         }
+    }
     post {
         always {
                 echo 'Cleaning up Docker image...'
                 sh 'docker rmi -f my-image:latest || true'
                 }
-            }
         }
+    
 }
