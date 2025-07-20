@@ -3,10 +3,12 @@ pipeline {
         node {
             label  'docker-agent-python_dockercli' 
         }
-      }
+    }
+    
     triggers {
         pollSCM '* * * * *'
     }
+    
     stages {
         stage('Build') {
             steps {
@@ -17,10 +19,11 @@ pipeline {
                 . venv/bin/activate
                 pip install -r requirements.txt
                 echo "Installed all the requirements for the Python app."
-                echo "doing build stuff on Docker agent.."
+                echo "Doing build stuff on Docker agent.."
                 '''
             }
         }
+        
         stage('Test') {
             steps {
                 echo "Testing.. This is the second stage of the pipeline."
@@ -33,6 +36,7 @@ pipeline {
                 '''
             }
         }
+        
         stage('Docker Build and Run') {
             steps {
                 echo 'Building Docker image and running container...'
@@ -45,11 +49,14 @@ pipeline {
             }
         }
     }
+    
     post {
         always {
-                echo 'Cleaning up Docker image...'
-                sh 'docker rmi -f my-image:latest || true'
-                }
+            echo 'Cleaning up Docker container and image...'
+            sh '''
+            docker rm -f myapp-container || true
+            docker rmi -f myapp-image || true
+            '''
         }
-    
+    }
 }
