@@ -41,8 +41,9 @@ pipeline {
                 docker build -t myapp-image .
                 if docker ps --format '{{.Names}}' | grep -w myapp-container > /dev/null; then
                     docker rm -f myapp-container
+                else
+                    docker run -d --name myapp-container myapp-image
                 fi
-                docker run -d --name myapp-container myapp-image
                 '''
             }
         }
