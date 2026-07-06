@@ -39,7 +39,9 @@ pipeline {
                 sh '''
                 cd myapp
                 docker build -t myapp-image .
-                docker rm -f myapp-container || true
+                if docker ps --format '{{.Names}}' | grep -w myapp-container > /dev/null; then
+                    docker rm -f myapp-container
+                fi
                 docker run -d --name myapp-container myapp-image
                 '''
             }
