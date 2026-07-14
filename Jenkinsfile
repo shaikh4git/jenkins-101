@@ -1,5 +1,5 @@
 pipeline {
-    agent any
+    agent devopsagent2
     
     triggers {
         pollSCM '* * * * *'
